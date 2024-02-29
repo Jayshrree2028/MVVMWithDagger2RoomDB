@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
 //    @Inject
 //    lateinit var fakerDB1: FakerDB
-//
+
 //    @Inject
 //    lateinit var fakerDB2: FakerDB
 
@@ -26,11 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //We have passing MAinActivity to application Components
+        //We have passing MainActivity to application Components
         ( application as FakerApplication).applicationComponent.inject(this)
         mainViewModel = ViewModelProvider(this,mainViewModelsFactory).get(MainViewModel::class.java)
         mainViewModel.productsLiveData.observe(this, Observer {
-
             products.text= it.joinToString { x-> x.title + "\n\n" }
         })
     }
